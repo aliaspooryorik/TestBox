@@ -73,8 +73,8 @@ component accessors="true"{
 	*/
 	any function addDirectory( required any directory, boolean recurse=true ) {
 		// inflate directory?
-		if( isSimpleValue( arguments.directory ) ) { 
-			arguments.directory = { mapping=arguments.directory, recurse=arguments.recurse }; 
+		if( isSimpleValue( arguments.directory ) ) {
+			arguments.directory = { mapping=arguments.directory, recurse=arguments.recurse };
 		}
 		// directory passed?
 		if( !structIsEmpty( arguments.directory ) ){
@@ -90,8 +90,8 @@ component accessors="true"{
 	* @directories A set of directories to test which can be a list of simple mapping paths or an array of structs with the following options: [ mapping = the path to the directory using dot notation (myapp.testing.specs), recurse = boolean, filter = closure that receives the path of the CFC found, it must return true to process or false to continue process ]
 	*/
 	any function addDirectories( required any directories, boolean recurse=true ){
-		if( isSimpleValue( arguments.directories ) ){ 
-			arguments.directories = listToArray( arguments.directories ); 
+		if( isSimpleValue( arguments.directories ) ){
+			arguments.directories = listToArray( arguments.directories );
 		}
 		for( var dir in arguments.directories ) {
 			addDirectory( dir, arguments.recurse );
@@ -104,8 +104,8 @@ component accessors="true"{
 	* @directory A directory to test which can be a simple mapping path or a struct with the following options: [ mapping = the path to the directory using dot notation (myapp.testing.specs), recurse = boolean, filter = closure that receives the path of the CFC found, it must return true to process or false to continue process ]
 	*/
 	any function addBundles(required any bundles) {
-		if( isSimpleValue( arguments.bundles ) ){ 
-			arguments.bundles = listToArray( arguments.bundles ); 
+		if( isSimpleValue( arguments.bundles ) ){
+			arguments.bundles = listToArray( arguments.bundles );
 		}
 		for( var bundle in arguments.bundles ){
 			arrayAppend( variables.bundles, bundle );
@@ -371,6 +371,7 @@ component accessors="true"{
 			case "console" : { return new "testbox.system.reports.ConsoleReporter"(); }
 			case "min" : { return new "testbox.system.reports.MinReporter"(); }
 			case "mintext" : { return new "testbox.system.reports.MinTextReporter"(); }
+			case "compacttext" : { return new "testbox.system.reports.CompactTextReporter"(); }
 			case "tap" : { return new "testbox.system.reports.TapReporter"(); }
 			case "doc" : { return new "testbox.system.reports.DocReporter"(); }
 			case "codexwiki" : { return new "testbox.system.reports.CodexWikiReporter"(); }
