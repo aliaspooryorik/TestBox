@@ -238,9 +238,16 @@ component accessors="true"{
 		);
 
 		coverageService.beginCapture();
+		
+		var filteredBundles = variables.bundles.filter( function( item ) {
+			if (arrayLen(testBundles)) {
+				return arrayFind( testBundles, item ) > 0;
+			}
+			return true;
+		});
 
 		// iterate and run the test bundles
-		for( var thisBundlePath in variables.bundles ){
+		for( var thisBundlePath in filteredBundles ){
 			// Skip interfaces, they are not testable
 			if( getComponentMetadata( thisBundlePath ).type eq "interface" ){
 				continue;
